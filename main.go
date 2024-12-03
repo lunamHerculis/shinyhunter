@@ -8,6 +8,8 @@ import (
 )
 
 const (
+	factor = 1
+
 	displayID = 0
 
 	keyA         = "g"
@@ -55,7 +57,7 @@ startingPos:
 
 	fullCycle()
 
-	time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second / factor)
 
 	color := getMousePixelColor()
 	if color == nonShinyHex {
@@ -86,16 +88,16 @@ func softReset() {
 }
 
 func fullCycle() {
-	mashButton(keyA, 15*time.Second)
-	time.Sleep(100 * time.Millisecond)
-	mashButton(keyB, 9*time.Second)
-	time.Sleep(500 * time.Millisecond)
+	mashButton(keyA, 15*time.Second/factor)
+	time.Sleep(100 * time.Millisecond / factor)
+	mashButton(keyB, 9*time.Second/factor)
+	time.Sleep(500 * time.Millisecond / factor)
 	keyStroke(keyStart)
-	time.Sleep(1000 * time.Millisecond)
+	time.Sleep(1000 * time.Millisecond / factor)
 	keyStroke(keyA)
-	time.Sleep(1000 * time.Millisecond)
+	time.Sleep(1000 * time.Millisecond / factor)
 	keyStroke(keyA)
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(700 * time.Millisecond / factor)
 	keyStroke(keyA)
 }
 
