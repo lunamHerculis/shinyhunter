@@ -50,18 +50,16 @@ func main() {
 	fmt.Printf("nonShinyHex: %s\n", nonShinyHex)
 	time.Sleep(1 * time.Second)
 
-startingPos:
-	counter++
-
-	softReset()
-
-	fullCycle()
-
-	color := getMousePixelColor()
-	if color == nonShinyHex {
-		fmt.Printf("no shiny, target hex: %s, color: %s, counter: %d\n", nonShinyHex, color, counter)
-		goto startingPos
-	} else {
+	var color string
+	for {
+		counter++
+		softReset()
+		fullCycle()
+		color = getMousePixelColor()
+		if color == nonShinyHex {
+			fmt.Printf("no shiny, target hex: %s, color: %s, counter: %d\n", nonShinyHex, color, counter)
+			continue
+		}
 		fmt.Printf("holy shit a shiny!!!, target hex: %s, color: %s, counter: %d\n", nonShinyHex, color, counter)
 		return
 	}
