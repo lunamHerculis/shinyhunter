@@ -84,10 +84,8 @@ func softReset() {
 }
 
 func fullCycle() {
-	mashButton(keyA, 15*time.Second/factor)
-	time.Sleep(100 * time.Millisecond / factor)
-	mashButton(keyB, 9500*time.Millisecond/factor)
-	time.Sleep(500 * time.Millisecond / factor)
+	mashButton(keyA, 16*time.Second/factor)
+	mashButton(keyB, 10*time.Second/factor)
 	keyStroke(keyStart)
 	time.Sleep(1000 * time.Millisecond / factor)
 	keyStroke(keyA)
