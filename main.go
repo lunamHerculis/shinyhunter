@@ -57,8 +57,6 @@ startingPos:
 
 	fullCycle()
 
-	time.Sleep(3 * time.Second / factor)
-
 	color := getMousePixelColor()
 	if color == nonShinyHex {
 		fmt.Printf("no shiny, target hex: %s, color: %s, counter: %d\n", nonShinyHex, color, counter)
@@ -90,7 +88,7 @@ func softReset() {
 func fullCycle() {
 	mashButton(keyA, 15*time.Second/factor)
 	time.Sleep(100 * time.Millisecond / factor)
-	mashButton(keyB, 9*time.Second/factor)
+	mashButton(keyB, 9500*time.Millisecond/factor)
 	time.Sleep(500 * time.Millisecond / factor)
 	keyStroke(keyStart)
 	time.Sleep(1000 * time.Millisecond / factor)
@@ -99,6 +97,7 @@ func fullCycle() {
 	keyStroke(keyA)
 	time.Sleep(700 * time.Millisecond / factor)
 	keyStroke(keyA)
+	time.Sleep(3 * time.Second / factor)
 }
 
 func mashButton(key string, duration time.Duration) {
