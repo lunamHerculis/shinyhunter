@@ -12,6 +12,8 @@ const (
 
 	displayID = 0
 
+	layoutUS = "2006-01-02 15:04:05"
+
 	keyA         = "g"
 	keyB         = "f"
 	keyUp        = "w"
@@ -46,26 +48,25 @@ func main() {
 
 	locationX, locationY = robotgo.Location()
 	fmt.Printf("locationX: %d, locationY: %d\n", locationX, locationY)
-	nonShinyHex = getMousePixelColor()
+	nonShinyHex = getPixelColorAtPresetLocation()
 	fmt.Printf("nonShinyHex: %s\n", nonShinyHex)
 	time.Sleep(1 * time.Second)
 
-	var color string
 	for {
 		counter++
 		softReset()
 		fullCycle()
-		color = getMousePixelColor()
+		color := getPixelColorAtPresetLocation()
 		if color == nonShinyHex {
-			fmt.Printf("no shiny, target hex: %s, color: %s, counter: %d\n", nonShinyHex, color, counter)
+			fmt.Printf("no shiny, target hex: %s, color: %s, counter: %d, time: %s\n", nonShinyHex, color, counter, time.Now().Format(layoutUS))
 			continue
 		}
-		fmt.Printf("holy shit a shiny!!!, target hex: %s, color: %s, counter: %d\n", nonShinyHex, color, counter)
+		fmt.Printf("holy shit a shiny!!!, target hex: %s, color: %s, counter: %d\n time: %s\n", nonShinyHex, color, counter, time.Now().Format(layoutUS))
 		return
 	}
 }
 
-func getMousePixelColor() string {
+func getPixelColorAtPresetLocation() string {
 	c := robotgo.GetPixelColor(locationX, locationY, displayID)
 	return c
 }
@@ -86,6 +87,8 @@ func softReset() {
 func fullCycle() {
 	mashButton(keyA, 16*time.Second/factor)
 	mashButton(keyB, 10*time.Second/factor)
+	color := getPixelColorAtPresetLocation()
+	fmt.Printf("color at pixel before pressing start: %s\n", color)
 	keyStroke(keyStart)
 	time.Sleep(1000 * time.Millisecond / factor)
 	keyStroke(keyA)
