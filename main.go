@@ -58,14 +58,12 @@ func main() {
 	time.Sleep(1 * time.Second)
 
 	for {
-		realCounter++
-		saveCounter++
 
 		softReset()
 		toStarter()
 
 		// after 100 runs, wait and save
-		if saveCounter > 2 {
+		if saveCounter > 100 {
 
 			newAdditionalWaitTime := 20 * saveCounter // roughly 1.2 frames * saveCounter
 			fmt.Printf("new additional wait time in seconds: %.3f\n", float64(newAdditionalWaitTime)/1000)
@@ -77,6 +75,9 @@ func main() {
 			saveCounter = 0
 			continue
 		}
+
+		realCounter++
+		saveCounter++
 
 		newAdditionalWaitTime := 20 * saveCounter // roughly 1.2 frames * saveCounter
 		fmt.Printf("new additional wait time in seconds: %.3f\n", float64(newAdditionalWaitTime)/1000)
@@ -127,6 +128,10 @@ func save() {
 	time.Sleep(500 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyDown)
 	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
+	keyStroke(keyDown)
+	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
+	keyStroke(keyDown)
+	time.Sleep(500 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyA)
 	time.Sleep(2000 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyA)
