@@ -65,7 +65,7 @@ func main() {
 		toStarter()
 
 		// after 100 runs, wait and save
-		if saveCounter > 100 {
+		if saveCounter > 2 {
 
 			newAdditionalWaitTime := 20 * saveCounter // roughly 1.2 frames * saveCounter
 			fmt.Printf("new additional wait time in seconds: %.3f\n", float64(newAdditionalWaitTime)/1000)
@@ -115,7 +115,8 @@ func softReset() {
 }
 
 func toStarter() {
-	mashButton(keyA, 11*time.Second/fastForwardSpeed)
+	mashButton(keyA, 12*time.Second/fastForwardSpeed)
+	mashButton(keyB, 3*time.Second/fastForwardSpeed)
 }
 
 func save() {
@@ -135,8 +136,8 @@ func save() {
 }
 
 func takeStarter() {
-	mashButton(keyA, 5*time.Second/fastForwardSpeed)
-	mashButton(keyB, 10*time.Second/fastForwardSpeed)
+	mashButton(keyA, 2*time.Second/fastForwardSpeed)
+	mashButton(keyB, 2*time.Second/fastForwardSpeed)
 }
 
 func goIntoPokedex() {
@@ -144,7 +145,13 @@ func goIntoPokedex() {
 	fmt.Printf("color at pixel before pressing start: %s\n", color)
 	keyStroke(keyStart)
 	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
+	keyStroke(keyDown)
+	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyA)
+	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
+	keyStroke(keyUp)
+	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
+	keyStroke(keyUp)
 	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyA)
 	time.Sleep(700 * time.Millisecond / fastForwardSpeed)
