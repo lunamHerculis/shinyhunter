@@ -149,7 +149,7 @@ func goIntoPokedex() {
 	color := getPixelColorAtPresetLocation()
 	fmt.Printf("color at pixel before pressing start: %s\n", color)
 	keyStroke(keyStart)
-	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
+	time.Sleep(1500 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyDown)
 	time.Sleep(1000 * time.Millisecond / fastForwardSpeed)
 	keyStroke(keyA)
